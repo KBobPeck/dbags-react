@@ -1,24 +1,30 @@
 import logo from './logo.svg';
-import './App.css';
+import './styles/style.css';
+import Sidebar from './Components/Sidebar/Sidebar'
+import Navbar from './Components/Main/Navbar'
+import About from './Components/Main/About'
+import Dashboard from './Components/Main/Dashboard';
+import { MemoryRouter, Switch, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MemoryRouter>
+      <div className="siteContainer">
+        <Sidebar />
+        <div className="main">
+          <Navbar />
+            {/* Changes the page to the current tab */}
+            <Switch>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/">
+              <Dashboard />
+            </Route>
+          </Switch>
+        </div>
+      </div>
+    </MemoryRouter>
   );
 }
 
